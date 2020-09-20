@@ -1,0 +1,131 @@
+<%kupon.kupon.map((mac,index) => {%>
+  <form class="mt-5" id="macForm<%-index+1%>">
+      <h4>-------------------------------<%-index+1%>.MAC-------------------------------</h4>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Lig</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" required="true" value="<%-mac.lig%>" name="lig" id="lig<%-index+1%>">
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Mac Tarihi</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" required="true" value="<%-mac.macTarih%>" name="macTarih" id="macTarih<%-index+1%>">
+        </div>
+      </div>
+  
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label">1. Takım</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" required="true" value="<%-mac.birinciTakim%>" name="birinciTakim"  id="birinciTakim<%-index+1%>">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">2. Takım</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" required="true" value="<%-mac.ikinciTakim%>" name="ikinciTakim"  id="ikinciTakim<%-index+1%>">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Tahmin</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" required="true" value="<%-mac.tahmin%>" name="tahmin"  id="tahmin<%-index+1%>">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Oran</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" required="true" value="<%-mac.oran%>" name="oran"  id="oran<%-index+1%>">
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Yorum</label>
+          <div class="col-sm-10">
+              <textarea style="max-width: 100%;" name="comment" form="usrform" cols="125" rows="4" name="macYorum" id="macYorum<%-index+1%>"><%-mac.macYorum%></textarea>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Durum</label>
+          
+          <div class="col-sm-10">
+              <div class="input-group">
+                  <select id="macDurum<%-index+1%>">
+                    <option  class="custom-select" <%if (mac.durum === "0"){%>
+                      selected
+                    <%}%> value="0">Beklemede</option>
+                    <option  class="custom-select"
+                   
+                    <%if (mac.durum === "1"){%>
+                      selected
+                    <%}%> value="1">Kazandı</option>
+                    
+                    <option  class="custom-select"
+                    <%if (mac.durum === "2"){%>
+                      selected
+                    <%}%> value="2">Kaybetti</option>
+                  </select>
+          </div>
+        </div>
+        
+  
+    </form>   
+  
+      <%})%>
+  
+  
+      <form class="mt-5">
+          <h4>-------------------------------KUPON-------------------------------</h4>
+      
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kupon Yorumu</label>
+              <div class="col-sm-10">
+                  <textarea style="max-width: 100%;" name="comment" form="usrform" cols="125" rows="4" required="true" name="kuponYorum" id="kuponYorum" required = "true"><%-kupon.kuponYorum%></textarea>
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kupon Ekleyen</label>  
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="<%-kupon.kuponEkleyen%>" required="true" name="kuponEkleyen" id="kuponEkleyen">
+              </div>
+            </div>  
+  
+  
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Durum</label>
+              
+              <div class="col-sm-10">
+                  <div class="input-group">
+                      <select id="kuponDurum">
+                        <option  class="custom-select" <%if (kupon.kuponDurum === "0"){%>
+                          selected
+                        <%}%> value="0">Beklemede</option>
+                        <option  class="custom-select"
+                       
+                        <%if (kupon.kuponDurum === "1"){%>
+                          selected
+                        <%}%> value="1">Kazandı</option>
+                        
+                        <option class="custom-select"
+                        <%if (kupon.kuponDurum === "2"){%>
+                          selected
+                        <%}%> value="2">Kaybetti</option>
+                      </select>
+              </div>
+            </div>
+      
+  
+          <input type="hidden" value="<%-kupon._id%>" id="editKuponId">
+          <input type="hidden" value="<%-kupon.kupon.length%>" id="kuponUzunluk">
+  
+          <button type="submit" class="btn btn-primary" id="editKupon" >Değişiklikleri Kaydet</button>
+  
+      
+        </form>
+

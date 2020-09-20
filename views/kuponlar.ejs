@@ -1,0 +1,79 @@
+<table class="table table-striped p-0" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kupon Maçları</th>
+        <th scope="col">Kupon Yorumu</th>
+        <th scope="col">Kupon Ekleyen</th>
+
+        <th scope="col">Kupon Durum</th>
+        <th scope="col">Kupon Oran</th>
+        <th scope="col">Kupon Tarih</th>
+        <th scope="col">Düzenle</th>
+        <th scope="col">Sil</th>
+
+
+
+      </tr>
+    </thead>    
+    <tbody>
+
+
+        <% kuponlar.map((item,index) => {%>
+            
+            <tr>
+                
+                <td ><%- index+1 %></td>
+                <td > 
+
+                   
+                            
+                             <%  item.kupon.map((item2,ind) => {%>
+                    <span style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 2rem; "><%-item2.birinciTakim%>  - <%-item2.ikinciTakim%> - <%-item2.macTarih%> -
+                      
+                      
+                      <%if(item2.durum==="0"){%></span>
+                        Beklemede
+                        <%}else if(item2.durum==="1"){%>
+                          Kazandı
+                          <%}else{%>
+                            Kaybetti
+                            <%}%>
+                    <br>
+                   
+                    <%})%>
+
+    
+                     
+
+                </td>
+              
+                <td scope="col"><%- item.kuponYorum %></td>
+                <td scope="col"><%- item.kuponEkleyen %></td>
+        
+                <td scope="col"><% if(item.kuponDurum === "0") { %>
+                    <span>Beklemede</span>
+              <% } else if(item.kuponDurum === "1"   ) { %>
+                    <span style="color: green;">Kazandi</span>
+             <% } else { %>
+                    <span style="color: red;">Kaybetti</span>
+                <%} %>
+                </td>
+                <td scope="col"><%- item.kuponOran %></t  d>
+                <td scope="col"><%- item.kuponTarih2 %></td>
+                <td><a href="javascript:void(0)"><i id="<%-item._id%>" class="fa fa-edit kuponedit" aria-hidden="true"></i></a></td>
+                <td><a href="javascript:void(0)"><i id="<%-item._id%>" class="fa fa-trash kupon" aria-hidden="true"></i></a></td>
+                
+              </tr>
+
+         <% }) %>
+
+    </tbody>
+
+ 
+  </table>
+
+
+  
+ 
+ 
