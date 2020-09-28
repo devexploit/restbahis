@@ -95,18 +95,31 @@ exports.addUser = ((req,res,next) => {
           })
     }
 
-    const newUser = new User({
-        username : req.body.username,
-        password : req.body.password
-    })
+    User.findOne({username : req.body.username})
+    .then((user) => {
+        if(user){
+            return res.json(
+                {
+                    message: "user zaten var"
+                }
+            )
+        }
 
-    return newUser.save()
+        const newUser = new User({
+            username : req.body.username,
+            password : req.body.password
+        })
 
-    .then(() => {
+        newUser.save();
+
         return res.json({
             redirect : "uyeler"
         })
     })
+
+
+       
+  
 
 })
 

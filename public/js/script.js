@@ -45,7 +45,7 @@ $(document).ready(function() {
 
           e.preventDefault();
 
-          var username = $("#newUserUsername").val();
+          var username = $("#newUsername").val();
           var password =  $("#newUserPassword").val();
           
           $.ajax(
@@ -58,15 +58,19 @@ $(document).ready(function() {
                    password : password
                 },
                 success:  function(msg) {
-                    if (msg){
+                    if (msg.redirect){
                         alertify.success
                         ("User başarılı bir şekilde eklendi");
                         setInterval(function(){ 
                             location.href = msg.redirect;
                          }, 1500);
                     }
+                    else if(msg.message){
+                      alertify.error(msg.message);
+
+                    }
                     else {
-                        alertify.fail("islem basarisiz")
+                        alertify.error("islem basarisiz")
                     }
                 }
             }
