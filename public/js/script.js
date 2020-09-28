@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
         $('#myTable').DataTable();
 
 
@@ -154,11 +155,24 @@ $(document).ready(function() {
 
         })
 
+
+
    
     $("#kuponMacSayisi").on("click",function(e) {        
         var macsayisi = $(".macSayisi").val();
+        
+      
         if(macsayisi){
-            for(var i=0; i<macsayisi; i++){
+
+      
+       
+          $("#canliMacOnay").on('click',function(){
+            alert("asdas");
+          })
+         
+
+    
+            for(var i=0; i<Number(macsayisi); i++){
                 $(".containeric").append(`<form class="mt-5" id="macForm${i+1}">
                 <h4>-------------------------------${i+1}.MAC-------------------------------</h4>
                 <div class="form-group row">
@@ -202,6 +216,8 @@ $(document).ready(function() {
                       <input type="number" class="form-control" required="true" name="oran"  id="oran${i+1}">
                     </div>
                   </div>
+
+                  
             
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Yorum</label>
@@ -209,9 +225,10 @@ $(document).ready(function() {
                         <textarea style="max-width: 100%;" name="comment" form="usrform" placeholder="Yorum..." cols="125" rows="4" name="macYorum" id="macYorum${i+1}"></textarea>
                     </div>
                   </div>
-            
-            
-              </form>`);  
+
+              </form>
+              
+              `);  
             } 
 
             $(".containeric").append(`<form class="mt-5"> 
@@ -229,8 +246,32 @@ $(document).ready(function() {
               <div class="col-sm-10">
                 <input type="text" class="form-control" required="true" name="kuponEkleyen" id="kuponEkleyen">
               </div>
-            </div>        
+            
+              </div>   
+
+              
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Canlı</label>
+            
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <select id="canli">
+                    
+                      <option class="custom-select"
+                     
+                      value="1"  >Evet</option>
+                      
+                      <option  class="custom-select"
+                      value="0" selected>Hayır</option>
+                    </select>
+            </div>
+              <br>
             <button type="submit" class="btn btn-primary mb-2"  id="kuponEkle">Kupon Ekle</button>
+
+
+
+        
+
 
           </form>
 `)
@@ -246,17 +287,20 @@ $("#kuponEkle").on('click', function(en){
         var  tahmin = $(`#macForm${i+1} #tahmin${i+1}`).val();
         var  oran = $(`#macForm${i+1} #oran${i+1}`).val();
         var  macYorum = $(`#macForm${i+1} #macYorum${i+1}`).val();
+       
+       
         var  durum = 0;
-
+        
         kupon.push({
-            lig : lig, macTarih : macTarih, birinciTakim : birinciTakim, ikinciTakim : ikinciTakim, tahmin : tahmin , oran : oran, macYorum : macYorum, durum :durum
+            lig : lig, macTarih : macTarih, birinciTakim : birinciTakim, ikinciTakim : ikinciTakim, tahmin : tahmin , oran : oran, macYorum : macYorum
         })
+
       }
       
       if(lig !== "" &&  macTarih !== "" && birinciTakim !== "" && ikinciTakim !==  "" && tahmin !== ""  && oran !== "" && oran !==  "" && macYorum !== "" ){
         var kuponYorum = $("#kuponYorum").val();
         var kuponEkleyen = $("#kuponEkleyen").val(); 
-        
+        var canli = $('#canli').val();
         if(kuponYorum !== "" && kuponEkleyen != ""){
             $.ajax(
                 {
@@ -266,7 +310,8 @@ $("#kuponEkle").on('click', function(en){
                     data : {
                         kupon : kupon,
                         kuponYorum : kuponYorum,
-                        kuponEkleyen:kuponEkleyen
+                        kuponEkleyen:kuponEkleyen,
+                        canli : canli
                     },
                     success:  function(msg) {
                         if (msg){
@@ -287,19 +332,35 @@ $("#kuponEkle").on('click', function(en){
             alertify.error("Alanlar doldurulmalıdır");
         }
 
-       
+     
                
     }   
     else {
         alertify.error("Alanlar doldurulmalıdır");
     }
+
+
+
     en.preventDefault(); 
 })
 
 
+
+
+
 e.preventDefault();      
 
-    }
+    
+
+for(var i=0;i<Number(macsayisi);i++){
+           
+
+}  
+
+
+
+}
+
                  
     })
  

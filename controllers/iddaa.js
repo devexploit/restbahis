@@ -52,7 +52,6 @@ exports.postKuponEkle = ((req,res,next) => {
             notification : "Kuponlar için /coupons get at"
           })
     }
-
     var date = new Date();
 
     var yil = date.getFullYear();
@@ -60,7 +59,6 @@ exports.postKuponEkle = ((req,res,next) => {
     var gun = date.getDate();
     var saat = date.getHours();
     var dakika = date.getMinutes();
-
 
     if(ay < 10){
         ay = "0" + ay;
@@ -75,13 +73,19 @@ exports.postKuponEkle = ((req,res,next) => {
         dakika = "0" + dakika;
     }
 
-    tarih = `${gun}/${ay}/${yil} ${saat}:${dakika}`
+    tarih = `${gun}.${ay}.${yil} ${saat}:${dakika}`
     
 
     var kupon = req.body.kupon;
     var kuponYorum = req.body.kuponYorum;
     var kuponEkleyen = req.body.kuponEkleyen;
-
+    var canli = req.body.canli;
+    if(canli == '0'){
+        canli = false;
+    }
+    else {
+        canli = true;
+    }
     var kuponOran = 1;
     kupon.forEach(element => {
         kuponOran *= element.oran;
@@ -93,8 +97,8 @@ exports.postKuponEkle = ((req,res,next) => {
         kuponEkleyen : kuponEkleyen,
         kuponDurum : 0,
         kuponOran : kuponOran,
-        kuponTarih2 : tarih
-
+        kuponTarih2 : tarih,
+        canli : canli
 
     })
     Kupon.save();

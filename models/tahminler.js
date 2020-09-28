@@ -14,7 +14,9 @@ const tahminSchema = mongoose.Schema({
         tahmin : String,
         oran : Number,
         macYorum : String,
-        durum : String
+        durum : String,
+        canli : Boolean,
+        dakika : String
       }
   ],
   kuponDurum : String,
@@ -25,7 +27,8 @@ const tahminSchema = mongoose.Schema({
     type : Date,
     default : Date.now 
   },
-  kuponTarih2 : String
+  kuponTarih2 : String,
+  canli : Boolean
 
 })
 

@@ -124,8 +124,33 @@
           <input type="hidden" value="<%-kupon._id%>" id="editKuponId">
           <input type="hidden" value="<%-kupon.kupon.length%>" id="kuponUzunluk">
   
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Canlı</label>
+            
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <select id="canli">
+                    
+                      <option class="custom-select"
+                     
+                      value="1" 
+                      
+                      <%if(kupon.canli == true) {%>
+                        selected
+                        <%}%>
+
+                      >Evet</option>
+                      
+                      <option  class="custom-select"
+                      value="0" <%if(kupon.canli == false) {%>
+                      selected
+                      <%}%>
+                      >Hayır</option>
+                    </select>
+            </div>
+              <br>
+
           <button type="submit" class="btn btn-primary" id="editKupon" >Değişiklikleri Kaydet</button>
   
       
         </form>
-
